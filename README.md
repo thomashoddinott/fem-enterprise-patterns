@@ -1,3 +1,9 @@
+# My Notes
+
+[Background Reading: Out of the Tar Pit, Moseley & Marks](./MoseleyMarks06a.pdf)
+
+... 
+
 # Enteprise Patterns Course
 
 This is the sample project for the Enteprise Patterns course for Frontend Masters.
