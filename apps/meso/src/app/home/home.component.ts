@@ -109,6 +109,25 @@ const initialProjectsState: ProjectsState = {
   currentProject: newProject
 }
 
+class ProjectsStore {
+  state: ProjectsState
+
+  constructor(state: ProjectsState) {
+    this.state = state
+  }
+
+  getState(): ProjectsState {
+    return this.state
+  }
+
+  select(key: string) {
+    return this.state[key]
+  }
+}
+
+const projectStore = new ProjectsStore(initialProjectsState)
+const currentProjects = projectStore.select('projects')
+
 interface AppState {
   clientsState: ClientsState,
   projectsState: ProjectsState
@@ -119,7 +138,7 @@ const appState: AppState = {
   projectsState: initialProjectsState
 }
 
-const tango = currentClient;
+const tango = currentProjects;
 
 @Component({
   selector: 'fem-home',
