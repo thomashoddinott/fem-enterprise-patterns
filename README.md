@@ -2,7 +2,37 @@
 
 [Background Reading: Out of the Tar Pit, Moseley & Marks](./MoseleyMarks06a.pdf)
 
-... 
+If you want to change the quality of code than an engineer is writing, first of all, you don't change the way that they code, you change the way that they think. You do that by understanding programming **first principles**. 
+
+The antidote to complexity ==> simplicity
+
+Managing complexity is the most chalenging thing about programming
+
+The greatest contributor to complexity is: **state**. If you fail to manage state properly, you're going to exponentially increase your code volume.
+
+**The Iron triangle of programming:**
+
+- Handling of state
+- Code volume
+- Flow of control (communication)
+
+**Shared mutable state** is incredibly dangerous
+
+Always ask yourself, **can I test this code?** Can I reuse it? Is it portable? 
+
+**It is impossible to write good tests for bad code**
+
+<center><b>***If you're committed to writing tests, then you must commit to writing testable code***</b></center>
+
+We all know we should write tests, but why don't we? Why don't people write tests? ==> because the barrier to writing tests is too high, because the code is so bad.
+
+### Extract to Method
+
+Functions can become unstable because of **hidden state**. This happens when your function violates the **single responsibility principle**. Solution ==> extract to method.
+
+We want to go from coarse-grained code to fine-grained code ==> Delegate ftw!
+
+
 
 # Enteprise Patterns Course
 
