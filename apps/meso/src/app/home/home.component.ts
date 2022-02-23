@@ -30,7 +30,25 @@ const clients: Client[] = [
   john
 ]
 
-const tango = clients;
+interface ClientsState {
+  clients: Client[];
+  currentClient: Client
+}
+
+const newClient: Client = {
+  id: null,
+  firstName: '',
+  lastName: '',
+  company: ''
+}
+
+const initialClientState: ClientsState = {
+  clients, 
+  currentClient: newClient
+}
+
+
+const tango = initialClientState;
 
 @Component({
   selector: 'fem-home',
