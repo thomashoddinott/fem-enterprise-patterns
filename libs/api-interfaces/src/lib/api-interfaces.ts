@@ -1,3 +1,6 @@
+// in a real project here is where all the interfaces would live,
+// not in the actual component.
+
 export interface Message {
   message: string;
 }

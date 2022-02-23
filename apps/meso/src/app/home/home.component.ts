@@ -54,9 +54,29 @@ const newClient: Client = {
 }
 
 const initialClientState: ClientsState = {
-  clients, 
+  clients,
   currentClient: newClient
 }
+
+class ClientsStore {
+  state: ClientsState
+
+  constructor(state: ClientsState) {
+    this.state = state
+  }
+
+  getState() {
+    return this.state
+  }
+
+  select(key: string) {
+    return this.state[key]
+  }
+}
+
+const clientsStore = new ClientsStore(initialClientState)
+const currentClients = clientsStore.select('clients')
+const currentClient = clientsStore.select('currentClient')
 
 const superProject: Project = {
   id: '1',
@@ -99,7 +119,7 @@ const appState: AppState = {
   projectsState: initialProjectsState
 }
 
-const tango = appState;
+const tango = currentClient;
 
 @Component({
   selector: 'fem-home',
