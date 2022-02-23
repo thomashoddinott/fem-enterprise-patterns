@@ -86,14 +86,50 @@ const CLIENT_DELETE = '[Client] Delete';
 const CLIENT_SELECT = '[Client] Select';
 const CLIENT_CLEAR = '[Client] Clear';
 
-const loadClients = (state, clients) => {
-  console.log('LOAD CLIENTS!', clients)
-  return state
+const loadClients = (state, clients): ClientsState => {
+  return {
+    clients,
+    currentClient: state.currentClient
+  }
 }
 
-const selectClient = (state, client) => {
-  console.log('SELECT CLIENT!', client)
-  return state
+const selectClient = (state, client): ClientsState => {
+  return {
+    clients: state.clients,
+    currentClient: client
+  }
+}
+
+const clearClient = (state): ClientsState => {
+  return {
+    clients: state.clients,
+    currentClient: null
+  }
+}
+
+const createClient = (state, client): ClientsState => {
+  return {
+    clients: [...state.clients, client],
+    currentClient: state.currentClient
+  }
+}
+
+const deleteClient = (state, client): ClientsState => {
+  return {
+    clients: state.clients.filter(c => c.id !== client.id),
+    currentClient: state.currentClient
+  }
+}
+
+const updateClient = (state, client): ClientsState => {
+  return {
+    clients: state.clients.map(c => {
+      return (c.id === client.id)
+        ? Object.assign({}, client)
+        : c
+    }),
+    currentClient: state.currentClient
+  }
 }
 
 const clientsReducer = (state: ClientsState = initialClientState, action: Action) => {
@@ -102,6 +138,14 @@ const clientsReducer = (state: ClientsState = initialClientState, action: Action
       return loadClients(state, action.payload)
     case CLIENT_SELECT:
       return selectClient(state, action.payload)
+    case CLIENT_CLEAR:
+      return clearClient(state)
+    case CLIENT_CREATE:
+      return createClient(state, action.payload)
+    case CLIENT_DELETE:
+      return deleteClient(state, action.payload)
+    case CLIENT_UPDATE:
+      return updateClient(state, action.payload)
     default:
       return state
   }
