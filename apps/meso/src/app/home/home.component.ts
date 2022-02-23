@@ -5,6 +5,11 @@ interface BaseEntity {
   id: string | null
 }
 
+interface Action {
+  type: string;
+  payload?: any
+}
+
 interface Client extends BaseEntity {
   firstName: string;
   lastName: string;
@@ -71,6 +76,34 @@ class ClientsStore {
 
   select(key: string) {
     return this.state[key]
+  }
+}
+
+const CLIENT_LOAD = '[Client] Load';
+const CLIENT_CREATE = '[Client] Create';
+const CLIENT_UPDATE = '[Client] Update';
+const CLIENT_DELETE = '[Client] Delete';
+const CLIENT_SELECT = '[Client] Select';
+const CLIENT_CLEAR = '[Client] Clear';
+
+const loadClients = (state, clients) => {
+  console.log('LOAD CLIENTS!', clients)
+  return state
+}
+
+const selectClient = (state, client) => {
+  console.log('SELECT CLIENT!', client)
+  return state
+}
+
+const clientsReducer = (state: ClientsState = initialClientState, action: Action) => {
+  switch (action.type) {
+    case CLIENT_LOAD:
+      return loadClients(state, action.payload)
+    case CLIENT_SELECT:
+      return selectClient(state, action.payload)
+    default:
+      return state
   }
 }
 
