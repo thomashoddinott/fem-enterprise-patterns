@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ClientRequest } from 'http';
+// import { ClientRequest } from 'http';
 
 interface BaseEntity {
   id: string | null
@@ -64,10 +64,12 @@ const initialClientState: ClientsState = {
 }
 
 class ClientsStore {
+  reducer
   state: ClientsState
 
-  constructor(state: ClientsState) {
+  constructor(state: ClientsState, reducer) {
     this.state = state
+    this.reducer = reducer
   }
 
   getState() {
@@ -76,6 +78,10 @@ class ClientsStore {
 
   select(key: string) {
     return this.state[key]
+  }
+
+  dispatch(action: Action) {
+    this.state = this.reducer(this.state, action)
   }
 }
 
@@ -151,7 +157,18 @@ const clientsReducer = (state: ClientsState = initialClientState, action: Action
   }
 }
 
-const clientsStore = new ClientsStore(initialClientState)
+const jane: Client = {
+  id: '123',
+  firstName: 'Jane',
+  lastName: 'Doe',
+  company: 'Anon'
+}
+
+const clientsStore = new ClientsStore(initialClientState, clientsReducer)
+const aClient = clientsStore.select('currentClient')
+clientsStore.dispatch({type: CLIENT_CREATE, payload: jane})
+const allClients = clientsStore.select('clients')
+
 const currentClients = clientsStore.select('clients')
 const currentClient = clientsStore.select('currentClient')
 
@@ -215,7 +232,7 @@ const appState: AppState = {
   projectsState: initialProjectsState
 }
 
-const tango = currentProjects;
+const tango = allClients;
 
 @Component({
   selector: 'fem-home',
