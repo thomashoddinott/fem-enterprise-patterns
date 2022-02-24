@@ -192,7 +192,7 @@ Observable emit new values over time as new data is available.
 
 e.g. a real-time score board
 
-![image-20220224114854265](/Users/thomas/Desktop/img-readme/image-20220224114854265.png)
+![image-20220224114854265](./img-readme/image-20220224114854265.png)
 
 **But observables are hard!!!** 
 
