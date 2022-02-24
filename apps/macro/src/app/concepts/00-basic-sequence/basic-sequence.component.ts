@@ -18,10 +18,12 @@ export class BasicSequenceComponent implements AfterViewInit {
   ngAfterViewInit() {
     fromEvent(this.getNativeElement(this.btn), 'click')
       .pipe(
-        // filter((event: KeyboardEvent) => event.shiftKey),
-        map(event => 'Beast Mode Activated!')
+        filter((event: KeyboardEvent) => event.shiftKey),
+        map(event => 'TANNER IS AN ELITE PLANNER!')
       )
-      .subscribe(result => this.message = result);
+      .subscribe(result =>
+        this.message = result
+      )
   }
 
   getNativeElement(element) {
